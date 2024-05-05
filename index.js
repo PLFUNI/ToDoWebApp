@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 // Database connection
-const mongoDBUri = "mongodb+srv://admin:fTe6uS1KMiVrWgcN@notes-cluster.1tihbik.mongodb.net/?retryWrites=true&w=majority&appName=Notes-Cluster";
+const mongoDBUri = "mongodb+srv://Guest:cRlLctwloDOOa6Vf@cluster0.m4veolx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 mongoose.connect(mongoDBUri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Content variables
