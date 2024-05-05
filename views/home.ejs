@@ -1,0 +1,17 @@
+<%- include('partials/header'); -%>
+<h1>Home      <%= content %></h1>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <% notes.forEach(list => { %>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title"><%= list.content %></h5>
+              
+            </div>
+            <button type="button" class="btn btn-outline-info"><a href="/notes/<%= list._id %>"> Expand</a></button>
+          </div>
+        </div>
+    <% }); %>
+    </div>
+<%- include('partials/footer'); -%>
+

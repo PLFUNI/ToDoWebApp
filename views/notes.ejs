@@ -1,0 +1,54 @@
+<%- include('partials/header'); -%>
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header"></div>
+                <div class="card-body">
+                    <h5 data-attribute-id = "<%= id %>" class="card-title">ToDo List</h5>
+                    <p class="card-text"><%= note %></p>
+                    <button type="button" class="btn btn-outline-info"><a href="/composeEntry/<%= id %>">Add new entry</a></button>
+                    
+                    <form action="/notes/delete/<%= id %>" method="POST">                          <%# X per rimuovere %>
+                        <button type="submit" class="btn-close" aria-label="Remove"></button>
+                    </form>                
+                
+                    <% notes.forEach(s_note => { %>
+                        
+                        <div class="col">
+                          <% if(s_note.completed) { %>
+                          <div class="card h-100" style="background-color:rgb(119, 236, 110);">
+                          <% } else { %>
+                          <div class="card h-100" style="background-color:powderblue;">
+                          <% }; %>
+                            <div class="card-body">
+                              <h5 class="card-title"><%= s_note.content %></h5>
+                              <h5 class="card-title"> </h5>
+                              <h5 class="card-title" style="color:green">Completed: <%= s_note.completed %></h5>
+                              
+                              
+                              <% if(!s_note.completed) { %>
+                              <form action="/completed?id=<%= s_note._id %>&completedBool=true&noteId=<%= id%>" method="POST">
+                                <button type="submit" class="btn btn-outline-info" aria-label="Complete" style="color:rgb(6, 103, 14); border-color:rgb(6, 103, 14);">Mark as completed</button>
+                              </form>
+                              <% } else { %>
+                              <form action="/completed?id=<%= s_note._id %>&completedBool=false&noteId=<%= id%>" method="POST">
+                                <button type="submit" class="btn btn-outline-info" aria-label="UnComplete" style="color:rgb(67, 18, 18); border-color:rgb(67, 18, 18);">Mark as not completed</button>
+                              </form>
+                              <% }; %>
+                              
+                            </div>
+                            <form action="/notes/delete/<%= s_note._id %>?noteId=<%= id%>" method="POST">
+                                <button type="submit" class="btn-close" aria-label="Remove" style="float: right;"></button>
+                            </form>
+                          </div>
+                        </div>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer'); -%>
